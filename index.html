@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="dapsvi">
+		<title>dapsvi</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: "Ubuntu Mono", monospace;
+				color: white;
+			}
+			
+			html {
+				background-color: black;
+			}
+			
+			::-webkit-scrollbar {
+				display: none;
+			}
+			
+			.section {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				margin: 0;
+			}
+			
+			.hcenter {
+				display: flex;
+				justify-content: center;
+				flex-direction: row;
+				width: 100%;
+			}
+			
+			.vcenter {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			
+			.status-outer-container {
+				display: flex;
+				position: absolute;
+				bottom: 0;
+				flex-direction: column;
+				height: 100%;
+				width: 100%;
+				justify-content: flex-end;
+			}
+			
+			.status-container {
+				background: rgba(255, 255, 255, 0.1);
+				display: flex;
+				justify-content: left;
+				gap: 5px;
+				flex-direction: row;
+				align-items: center;
+				padding: 7px;
+			}
+			
+			.status-dev-mark {
+				background-color: red;
+				border-radius: 10px;
+				width: 10px;
+				height: 10px;
+			}
+			
+			.status-live-mark {
+				background-color: green;
+				border-radius: 10px;
+				width: 10px;
+				height: 10px;
+			}
+			
+			.leftscroll0 {
+				background-color: black;
+				border-radius: 5px 0px 0px 5px;
+				border-top: solid 2px white;
+				border-left: solid 2px white;
+				border-bottom: solid 2px white;
+				position: absolute;
+				top: 100px;
+				right: -350px;
+				width: 300px;
+				height: 40%;
+				box-shadow: -10px 5px 10px black;
+				transition: right ease 2s;
+			}
+			
+			.rightscroll0 {
+				background-color: black;
+				border-radius: 0px 5px 5px 0px;
+				border-top: solid 2px white;
+				border-right: solid 2px white;
+				border-bottom: solid 2px white;
+				position: absolute;
+				top: 200px;
+				left: -350px;
+				width: 300px;
+				height: 40%;
+				box-shadow: -10px 5px 10px black;
+				transition: left ease 2s;
+			}
+			
+			.leftscroll0.leftscroll {
+				right: 0;
+			}
+			
+			.rightscroll0.rightscroll {
+				left: 0;
+			}
+			
+			.live {
+				color: green;
+			}
+			
+			.live a {
+				color: green;
+			}
+			
+			.dev {
+				color: red;
+			}
+			
+			
+			
+			
+			
+			#dapsvi {
+				font-size: 150px;
+				color: rgba(225,225,225, .1);
+				background-image: url("https://s31.postimg.cc/yaze1agjv/abstract-background-canvas-249798.jpg");
+				background-position: bottom;
+				background-size: cover;
+				-webkit-background-clip: text;
+				animation: animate 30s linear infinite;
+			}
+			
+			#part-1 {
+				background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 90%, #f2c51f 100%);
+			}
+			
+			#navbar {
+				position: fixed;
+				top: 0; left: 0;
+				width: 100%;
+				height: 50px;
+				background-color: #f2c51f;
+				color: black;
+				z-index: 1;
+			}
+			
+			#navbar-dapsvi {
+				margin: 0;
+				color: black;
+				font-size: 20px;
+				margin-left: 10px;
+				font-weight: bold;
+			}
+			
+			#hsplit {
+				display: flex;
+				flex-direction: row;
+			}
+			
+			#fixedwidth100px {
+				width: 100px;
+			}
+			
+			#navbuttons {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: right;
+				width: 100%;
+				gap: 20px;
+				margin: 0 20px;
+			}
+			
+			#navbuttons a {
+				background-color: #f2c51f;
+				animation: bg 1s;
+				padding: 5px;
+				border-radius: 5px;
+				transition: background-color 1s ease;
+				color: black;
+			}
+			
+			#navbuttons a:hover {
+				background-color: #ffffff;
+			}
+			
+			#part-2 {
+				top: 100%;
+				background: linear-gradient(180deg, #f2c51f 0%, #f2c51f 20%, rgba(179,0,0,1) 100%);
+			}
+			
+			#scroll-title {
+				width: 100%;
+				text-align: center;
+				padding-top: 5px;
+				font-weight: bold;
+				font-size: 20px;
+			}
+			
+			#scroll-description {
+				width: 90%;
+				text-align: justify;
+				padding: 7px;
+				font-size: 15px;
+			}
+			
+			
+			
+			
+			@keyframes leftscroll {
+				from {
+					right: -350px;
+				}
+				to {
+					right: 0;
+				}
+			}
+			
+			@keyframes rightscroll {
+				from {
+					left: -350px;
+				}
+				to {
+					left: 0;
+				}
+			}
+			
+			@keyframes animate {
+				0%{
+					background-position: left 0px top 10px;
+				}
+				50%{
+					background-position: left 800px top 10px;
+				}
+				100%{
+					background-position: left 0px top 10px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="navbar">
+			<div class="vcenter">
+				<div id="hsplit">
+					<p id="navbar-dapsvi" id="fixedwidth100px">dapsvi</p>
+					<div id="navbuttons">
+						<a href="./">Home</a>
+						<a href="./contact">Contact me</a>
+						<a href="./demos">Demos</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="part-1">
+			<div class="vcenter">
+				<div class="hcenter">
+					<h1 id="dapsvi">@dapsvi</h1>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="part-2">
+			<div id="leftscroll1" class="leftscroll0">
+				<div id="scroll-title">
+					WebGen.AI
+				</div>
+				<div id="scroll-description">
+					WebGen.AI is a website that helps people creating their own website using AI. No need to know how to code, simply ask the AI what you'd like !
+				</div>
+				<div class="status-outer-container">
+					<div class="status-container">
+						<div class="status-text">Status : </div>
+						<div class="status-dev-mark"></div>
+						<div class="status dev">Development</div>
+					</div>
+				</div>
+			</div>
+			<div id="rightscroll1" class="rightscroll0">
+				<div id="scroll-title">
+					Pizzeria da Giovà
+				</div>
+				<div id="scroll-description">
+					The best pizzeria in the world !
+				</div>
+				<div class="status-outer-container">
+					<div class="status-container">
+						<div class="status-text">Status : </div>
+						<div class="status-live-mark"></div>
+						<div class="status live"><a href="https://www.pizzeriadagiova.be/">Live</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function on150Scroll() {
+				var percentageScroll = parseInt(window.pageYOffset)/window.innerHeight*2;
+				if (percentageScroll >= 1.5) {
+					const leftScrollElement0 = document.getElementById('leftscroll1');
+					leftScrollElement0.setAttribute("class", "leftscroll leftscroll0");
+				} else {
+					const leftScrollElement0 = document.getElementById('leftscroll1');
+					leftScrollElement0.setAttribute("class", "leftscroll0");
+				}
+				
+				if (percentageScroll >= 1.7) {
+					const rightScrollElement0 = document.getElementById('rightscroll1');
+					rightScrollElement0.setAttribute("class", "rightscroll rightscroll0");
+				} else {
+					const rightScrollElement0 = document.getElementById('rightscroll1');
+					rightScrollElement0.setAttribute("class", "rightscroll0");
+				}
+			}
+			setInterval(on150Scroll, 100);
+		</script>
+	</body>
+</html>
