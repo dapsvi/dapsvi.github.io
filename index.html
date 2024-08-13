@@ -129,10 +129,6 @@
 				color: red;
 			}
 			
-			
-			
-			
-			
 			#dapsvi {
 				font-size: 150px;
 				color: rgba(225,225,225, .1);
@@ -251,7 +247,6 @@
 				border: 3px solid white;
 			}
 			
-			
 			@keyframes leftscroll {
 				from {
 					right: -350px;
@@ -281,13 +276,76 @@
 					background-position: left 0px top 10px;
 				}
 			}
+			
+			/* Media queries for mobile screens */
+			@media (max-width: 600px) {
+				#indbar {
+					display: none;
+				}
+				
+				#navbar {
+					height: auto;
+					padding: 10px 0;
+				}
+				
+				#hsplit {
+					flex-direction: column;
+					align-items: center;
+				}
+				
+				#navbar-dapsvi {
+					font-size: 18px;
+					text-align: center;
+					margin-left: 0;
+				}
+				
+				#navbuttons {
+					justify-content: center;
+					gap: 10px;
+					margin: 10px 0;
+					flex-wrap: wrap;
+				}
+				
+				#dapsvi {
+					font-size: 80px;
+					text-align: center;
+				}
+				
+				.leftscroll0, .rightscroll0, .leftscroll0.leftscroll, .rightscroll0.rightscroll {
+					width: 90%;
+					position: relative;
+					right: 0;
+					left: 0;
+					top: 10%;
+					height: auto;
+					transition: none;
+					height: 150px;
+					border: 3px solid white;
+					border-radius: 5px;
+				}
+				
+				#part-2 {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					align-items: center;
+				}
+				
+				#scroll-title {
+					font-size: 18px;
+				}
+				
+				#scroll-description {
+					font-size: 14px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<div id="navbar">
 			<div class="vcenter">
 				<div id="hsplit">
-					<p id="navbar-dapsvi" id="fixedwidth100px">dapsvi</p>
+					<p id="navbar-dapsvi">dapsvi</p>
 					<div id="navbuttons">
 						<a href="./">Home</a>
 						<a href="./contact">Contact me</a>

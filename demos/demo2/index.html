@@ -60,6 +60,8 @@
             background: url('https://img.freepik.com/free-vector/green-color-gradient-background-design-abstract-modern_343694-2178.jpg') no-repeat center center/cover;
             color: var(--secondary-color);
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 0 20px;
         }
 
         .hero h2 {
@@ -76,6 +78,7 @@
             display: flex;
             justify-content: space-around;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
 
         .service {
@@ -85,7 +88,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             flex: 1;
-            margin: 0 10px;
+            margin: 10px;
+            min-width: 280px;
         }
 
         .service img {
@@ -116,7 +120,58 @@
         footer p {
             margin: 0;
         }
-		
+
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+				width: 100%;
+            }
+
+            nav a {
+                padding: 10px;
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .services {
+                flex-direction: column;
+				width: 100%;
+				left: 0;
+            }
+			
+			.container {
+				width: 100%;
+				padding: 0;
+			}
+			
+			body {
+				//width: 90%;
+			}
+			
+			.hero {
+				padding: 0;
+			}
+
+            .service {
+                margin: 20px 0;
+				max-width: 100%;
+				min-width: 0px;
+            }
+			
+			header h1 {
+				font-size: 20px;
+			}
+        }
     </style>
 </head>
 <body>
@@ -178,6 +233,6 @@
             });
         });
     </script>
-    
+
 </body>
 </html>

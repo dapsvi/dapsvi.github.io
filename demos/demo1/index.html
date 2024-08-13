@@ -14,7 +14,6 @@
 	scrollbar-color: #FF8343 #F1DEC6;
 }
 
-
 #background {
 	position: fixed;
 	top: 0; left: 0;
@@ -25,7 +24,6 @@
     background-color: #F1DEC6;
     opacity: 1;
 }
-
 
 #navbar {
 	width: 100%;
@@ -166,6 +164,57 @@
 	text-align: justify;
 	font-size: 15px;
 }
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+	#navbar {
+		flex-direction: column;
+		height: auto;
+	}
+
+	.wrapper {
+		width: 100%;
+	}
+
+	#navbuttons {
+		flex-direction: row;
+		gap: 10px;
+		padding-right: 0;
+		justify-content: center;
+	}
+	
+	#title-container {
+		justify-content: center;
+	}
+
+	#mid-circle-wrapper-border {
+		width: 90%;
+		height: 50%;
+	}
+
+	#mid-circle {
+		width: 200px;
+		height: 200px;
+	}
+
+	#center-title {
+		font-size: 20px;
+	}
+
+	#description {
+		font-size: 10px;
+		padding: 0 10px;
+	}
+
+	#products {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.fixed-width {
+		width: 100%;
+	}
+}
 		</style>
 	</head>
 	<body>
@@ -223,4 +272,4 @@
 			</div>
 		</div>
 	</body>
-</head>
+</html>
