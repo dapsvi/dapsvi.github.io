@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Co. - Artisanal Candies</title>
+    <style>
+		html {
+			scroll-behavior: smooth;
+		}
+	
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: linear-gradient(45deg, #f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        nav {
+            background-color: #ff6f61;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            padding: 50px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .description {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .description h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .description p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="hero">
+        <h1>Welcome to Demo Co.</h1>
+        <p>Discover Our Exquisite Artisanal Candies</p>
+    </div>
+
+    <div class="carousel-container">
+        <img id="carouselImage" src="https://via.placeholder.com/600x400/FF6F61/ffffff?text=Honey+Almond+Crunch" alt="Candy">
+    </div>
+
+    <div class="description" id="about">
+        <h2>About Our Candies</h2>
+        <p>
+            At Demo Co., we pride ourselves on crafting the finest artisanal candies using the highest quality ingredients. Each piece is carefully made by hand, ensuring that every bite is a delightful experience. From the rich and nutty Honey Almond Crunch to the smooth and velvety Chocolate Velvet, our candies are a testament to our passion for quality and taste. Experience the bright and invigorating flavors of our Citrus Zest Delight, and you'll understand why our candies stand out. We believe in creating more than just sweets; we create memories that last with every delicious bite.
+        </p>
+    </div>
+
+    <footer id="contact">
+        <p>&copy; 2024 Demo Co. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const images = [
+            "https://via.placeholder.com/600x400/FF6F61/ffffff?text=Honey+Almond+Crunch",
+            "https://via.placeholder.com/600x400/FF9A9E/ffffff?text=Chocolate+Velvet",
+            "https://via.placeholder.com/600x400/FAD0C4/333333?text=Citrus+Zest+Delight"
+        ];
+
+        let currentIndex = 0;
+        const carouselImage = document.getElementById("carouselImage");
+
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            carouselImage.src = images[currentIndex];
+        }
+
+        setInterval(showNextImage, 3000);
+    </script>
+</body>
+
+</html>
