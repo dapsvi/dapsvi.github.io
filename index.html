@@ -137,6 +137,7 @@
 				background-size: cover;
 				-webkit-background-clip: text;
 				animation: animate 30s linear infinite;
+				margin: 10px;
 			}
 			
 			#part-1 {
@@ -277,6 +278,56 @@
 				}
 			}
 			
+			.dapsvi-center {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%;
+				height: 100%;
+			}
+			
+			#work {
+				font-size: 20px;
+				font-weight: bold;
+			}
+			
+			#workname {
+				background-color: #1a170e;
+				padding: 5px;
+				border-radius: 5px;
+			}
+			
+			#pricing {
+				font-size: 17px;
+				font-weight: bold;
+				z-index: 1;
+				color: #ffd500;
+				text-decoration: none;
+				transition: all 1s;
+				position: relative;
+			}
+			
+			#pricing::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 0.1em;
+				background-color: #ffd500;
+				opacity: 0;
+				transition: transform 300ms;
+				opacity 1;
+				transform: scale(0);
+				transform-origin: center;
+			}
+			
+			#pricing:hover::after,
+			#pricing:focus::after {
+				opacity: 1;
+				transform: scale(1);
+			}
+			
 			/* Media queries for mobile screens */
 			@media (max-width: 600px) {
 				#indbar {
@@ -341,7 +392,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body onload="loaded();">
 		<div id="navbar">
 			<div class="vcenter">
 				<div id="hsplit">
@@ -356,8 +407,10 @@
 		</div>
 		<div class="section" id="part-1">
 			<div class="vcenter">
-				<div class="hcenter">
+				<div class="hcenter dapsvi-center">
 					<h1 id="dapsvi">@dapsvi</h1>
+					<p id="work"><span id="workname" data-index="0">Full stack</span> developer</p>
+					<a href="./pricing" id="pricing">Went here for a website ?</a>
 				</div>
 			</div>
 		</div>
@@ -416,6 +469,21 @@
 				}
 			}
 			setInterval(on150Scroll, 100);
+			
+			function loaded() {
+				function changeText() {
+					texts = ["Full stack", "AI", "Python", "Web"]
+					const workname = document.getElementById('workname');
+					curIndex = parseInt(workname.getAttribute('data-index'));
+					curIndex += 1;
+					if (curIndex >= texts.length) {
+						curIndex = 0;
+					}
+					workname.setAttribute('data-index', curIndex);
+					workname.innerText = texts[curIndex];
+				}
+				setInterval(changeText, 2000);
+			}
 		</script>
 	</body>
 </html>
