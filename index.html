@@ -4,10 +4,11 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="dapsvi">
-		<title>dapsvi</title>
+		<title>dapsvi - développeur</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+		<link rel="icon" href="./logo.png" type="image/x-icon">
 		<style>
 			* {
 				font-family: "Ubuntu Mono", monospace;
@@ -15,7 +16,8 @@
 			}
 			
 			html {
-				background-color: black;
+				background-color: rgb(179, 0, 0);
+				scroll-behavior: smooth;
 			}
 			
 			::-webkit-scrollbar {
@@ -141,7 +143,7 @@
 			}
 			
 			#part-1 {
-				background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 90%, #f2c51f 100%);
+				background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, #f2c51f 100%);
 			}
 			
 			#navbar {
@@ -165,6 +167,7 @@
 			#hsplit {
 				display: flex;
 				flex-direction: row;
+				justify-content: space-between;
 			}
 			
 			#fixedwidth100px {
@@ -175,8 +178,8 @@
 				display: flex;
 				flex-direction: row;
 				flex-wrap: nowrap;
-				justify-content: right;
-				width: 100%;
+				justify-content: center;
+				width: 50%;
 				gap: 20px;
 				margin: 0 20px;
 			}
@@ -281,12 +284,16 @@
 			.dapsvi-center {
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-				width: 100%;
+				justify-content: center;
+				width: 50%;
 				height: 100%;
 			}
 			
-			#work {
+			.dapsvi-center h1 {
+				text-align: center;
+			}
+			
+			#right-part p {
 				font-size: 20px;
 				font-weight: bold;
 			}
@@ -328,20 +335,220 @@
 				transform: scale(1);
 			}
 			
-			/* Media queries for mobile screens */
-			@media (max-width: 600px) {
-				#indbar {
-					display: none;
+			#pricing-ad {
+				display: flex;
+				position: absolute;
+				bottom: 150px;
+				justify-content: center;
+				width: 100%;
+			}
+			
+			#right-part {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				width: 50%;
+				height: calc(100% - 200px);
+				display: flex;
+				margin: 100px 0;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			.not-bold{
+				font-weight: normal;
+			}
+			
+			a {
+				color: #f2c51f;
+				transition: color 1s ease;
+			}
+			
+			a:hover {
+				color: white;
+			}
+			
+			.skills-container {
+				display: flex;
+				justify-content: space-around;
+				flex-wrap: wrap;
+				max-width: 800px;
+				margin: 0 auto;
+			}
+			.skill {
+				text-align: center;
+				margin: 20px;
+				background-color: #2a2a2a;
+				border-radius: 10px;
+				padding: 20px;
+				box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+			}
+			svg {
+				width: 120px;
+				height: 120px;
+			}
+			.skill-name {
+				margin-top: 10px;
+				font-size: 18px;
+				color: #ffffff;
+			}
+			
+			#part-2 h2 {
+				margin: 70px 0;
+				color: black;
+				font-weight: bold;
+			}
+			
+			.process-container {
+				width: 50%;
+				background-color: rgb(255, 174, 0);
+				padding: 20px;
+				border-radius: 20px;
+			}
+			
+			.process-step h3 {
+				color: black;
+				text-align: center;
+			}
+			
+			.process-step p {
+				color: black;
+				text-align: justify;
+			}
+			
+			.section-title {
+				text-align: center;
+				text-decoration: underline;
+			}
+			
+			.pricing-container {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.pricing-plan {
+				width: 300px;
+				max-width: 30%;
+				padding: 0;
+				border-radius: 10px;
+				height: calc(100% + 100px);
+				margin: 0 1%;
+				position: relative;
+			}
+			
+			#pricing-1 {
+				background-color: rgb(0, 179, 255);
+			}
+			
+			#pricing-2 {
+				background-color: rgb(84, 227, 113);
+			}
+			
+			#pricing-3 {
+				background-color: rgb(237, 107, 198);
+			}
+			
+			.price {
+				text-align: center;
+				padding: 10px 0;
+				border-radius: 10px;
+				background-color: rgba(0, 0, 0, 0.2);
+				color: white;
+				margin: 0;
+			}
+			
+			.price-value {
+				color: white;
+				font-size: 40px;
+				margin: 10px 0;
+				font-weight: bold;
+			}
+			
+			.price-content {
+				padding: 10px;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				align-items: center;
+			}
+			
+			.price-content p {
+				margin: 0;
+				padding-bottom: 10px;
+				text-align: center;
+				width: 100%;
+				font-size: 15px;
+			}
+			
+			.pricebtn-btn {
+				background-color: white;
+				text-decoration: none;
+				padding: 20px;
+				border-radius: 40px;
+				font-weight: bold;
+				transition: all 0.5s ease;
+				text-wrap: nowrap;
+			}
+			
+			.pricebtn-btn:hover {
+				transform: scale(1.1);
+			}
+			
+			.pricebtn {
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				width: 100%;
+				position: absolute;
+				left: 0;
+				bottom: 20px;
+			}
+			
+			#pricebtn-1 {
+				color: rgb(0, 179, 255);
+			}
+			
+			#pricebtn-2 {
+				color: rgb(84, 227, 113);
+			}
+			
+			#pricebtn-3 {
+				color: rgb(237, 107, 198);
+			}
+			
+			.btn-space {
+				display: none;
+			}
+			
+			@media (max-width: 810px) {
+				.pricing-container {
+					flex-direction: column;
+					gap: 20px;
 				}
+				
+				.pricing-plan {
+					max-width: 90%;
+					width: 500px;
+					min-height: initial;
+				}
+				
+				.btn-space {
+					display: initial;
+					position: static;
+					height: 100px;
+					width: 100%;
+				}
+			}
+			
+			@media (max-width: 1100px) {
 				
 				#navbar {
 					height: auto;
 					padding: 10px 0;
-				}
-				
-				#hsplit {
-					flex-direction: column;
-					align-items: center;
 				}
 				
 				#navbar-dapsvi {
@@ -350,29 +557,15 @@
 					margin-left: 0;
 				}
 				
-				#navbuttons {
-					justify-content: center;
-					gap: 10px;
-					margin: 10px 0;
-					flex-wrap: wrap;
-				}
-				
 				#dapsvi {
 					font-size: 80px;
 					text-align: center;
+					margin-top: 100px;
 				}
 				
-				.leftscroll0, .rightscroll0, .leftscroll0.leftscroll, .rightscroll0.rightscroll {
-					width: 90%;
-					position: relative;
-					right: 0;
-					left: 0;
-					top: 10%;
-					height: auto;
-					transition: none;
-					height: 150px;
-					border: 3px solid white;
-					border-radius: 5px;
+				.dapsvi-center {
+					width: 100%;
+					justify-content: flex-start;
 				}
 				
 				#part-2 {
@@ -389,6 +582,45 @@
 				#scroll-description {
 					font-size: 14px;
 				}
+				
+				#right-part {
+					display: flex;
+					position: absolute;
+					left: 0;
+					width: 100%;
+				}
+				
+				.skills-container {
+					width: 100%;
+				}
+				
+				.skill {
+					width: 10%;
+					margin: 10px 0;
+					height: 50px;
+				}
+				svg {
+					width: 100%;
+					height: 90%;
+				}
+				.skill-name {
+					margin-top: 5px;
+					font-size: 10px;
+					color: #ffffff;
+				}
+				
+				#right-part p {
+					font-size: 15px;
+					font-weight: bold;
+				}
+			}
+			
+			#bottom-space {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				left: 0;
+				bottom: -49px;
 			}
 		</style>
 	</head>
@@ -398,81 +630,105 @@
 				<div id="hsplit">
 					<p id="navbar-dapsvi">dapsvi</p>
 					<div id="navbuttons">
-						<a href="./">Home</a>
-						<a href="./contact">Contact me</a>
-						<a href="./demos">Demos</a>
+						<a href="./">Accueil</a>
+						<a href="./contact">Contact</a>
+						<a href="./demos">Démos</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="section" id="part-1">
-			<div class="vcenter">
-				<div class="hcenter dapsvi-center">
-					<h1 id="dapsvi">@dapsvi</h1>
-					<p id="work"><span id="workname" data-index="0">Full stack</span> developer</p>
-					<a href="./pricing" id="pricing">Went here for a website ?</a>
-				</div>
+			<div class="vcenter dapsvi-center">
+				<h1 id="dapsvi">@dapsvi</h1>
+			</div>
+			<div id="right-part">
+				<p id="work">Développeur <span id="workname" data-index="0">Full Stack</span></p>
+				<p>Utilise HTML, CSS, JavaScript, et Python</p>
+				<p>Lieu de résidence : Belgique</p>
+				<p>Compte GitHub : <a href="https://www.github.com/dapsvi/" target="_blank">dapsvi</a></p>
+				<div class="skills-container" id="skillsContainer"></div>
+				<a href="#part-2" id="pricing">Vous souhaiteriez un site web ?</a>
 			</div>
 		</div>
 		<div class="section" id="part-2">
-			<div id="leftscroll1" class="leftscroll0">
-				<div id="scroll-title">
-					WebGen.AI
-				</div>
-				<div id="scroll-description">
-					WebGen.AI is a website that helps people creating their own website using AI. No need to know how to code, simply ask the AI what you'd like !
-				</div>
-				<div class="status-outer-container">
-					<div class="status-container">
-						<div class="status-text">Status : </div>
-						<div class="status-dev-mark"></div>
-						<div class="status dev">Development</div>
+			<h2 class="section-title">Mon Processus de Travail</h2>
+			<div class="hcenter">
+				<div class="process-container">
+					<div class="process-step">
+						<h3>Analyse & Conception</h3>
+						<p>Je commence par une analyse de vos besoins et crée une maquette pour visualiser le résultat final.</p>
+					</div>
+					<div class="process-step">
+						<h3>Développement</h3>
+						<p>Ensuite, je développe le site en utilisant les dernières technologies pour garantir performance et sécurité.</p>
+					</div>
+					<div class="process-step">
+						<h3>Tests & Déploiement</h3>
+						<p>Après une série de tests rigoureux, le site est déployé en ligne, prêt à accueillir vos clients.</p>
 					</div>
 				</div>
 			</div>
-			<div id="rightscroll1" class="rightscroll0">
-				<div id="scroll-title">
-					Pizzeria da Giovà
-				</div>
-				<div id="scroll-description">
-					The best pizzeria in the world !
-				</div>
-				<div class="status-outer-container">
-					<div class="status-container">
-						<div class="status-text">Status : </div>
-						<div class="status-live-mark"></div>
-						<div class="status live"><a href="https://www.pizzeriadagiova.be/">Live</a></div>
+			<h2 class="section-title">Offres & Tarifs</h2>
+			<div class="hcenter">
+				<div class="pricing-container">
+					<div class="pricing-plan" id="pricing-1">
+						<div class="price">
+							<h3>Plan de base</h3>
+							<p class="price-value">60€</p>
+						</div>
+						<div class="price-content">
+							<p>Idéal pour les petites entreprises ou startups.</p>
+							<p>Site vitrine 3 pages (site statique)</p>
+							<p>Aide pour héberger le site gratuitement et acheter un nom de domaine</p>
+							<p>Indexation sur Google et Bing</p>
+							<p>SEO de base</p>
+							<div class="btn-space"></div>
+						</div>
+						<div class="pricebtn">
+							<a href="./contact" class="pricebtn-btn" id="pricebtn-1">DEMANDER UN DEVIS</a>
+						</div>
+					</div>
+					<div class="pricing-plan" id="pricing-2">
+						<div class="price">
+							<h3>Site full stack de base</h3>
+							<p class="price-value">100€</p>
+						</div>
+						<div class="price-content">
+							<p>Idéal pour les sites nécessitant de mettre à jour une partie du site régulièrement</p>
+							<p>Site vitrine avec panel admin</p>
+							<p>Aide pour acheter un hébergeur et un nom de domaine</p>
+							<p>Indexation sur Google et Bing</p>
+							<p>SEO de base</p>
+							<div class="btn-space"></div>
+						</div>
+						<div class="pricebtn">
+							<a href="./contact" class="pricebtn-btn" id="pricebtn-2">DEMANDER UN DEVIS</a>
+						</div>
+					</div>
+					<div class="pricing-plan" id="pricing-3">
+						<div class="price">
+							<h3>Site full stack avancé</h3>
+							<p class="price-value">200€-500€</p>
+						</div>
+						<div class="price-content">
+							<p>Idéal pour les sites nécessitant un système de connexion, création de comptes, hiérarchie d'utilisateurs, APIs, et autres</p>
+							<p>Site entièrement personnalisé</p>
+							<p>Aide pour acheter un hébergeur et un nom de domaine</p>
+							<p>Indexation sur Google et Bing</p>
+							<p>SEO avancé</p>
+							<div class="btn-space"></div>
+						</div>
+						<div class="pricebtn">
+							<a href="./contact" class="pricebtn-btn" id="pricebtn-3">DEMANDER UN DEVIS</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="center fullsize">
-			<div id="indbar"></div>
 		</div>
 		<script>
-			function on150Scroll() {
-				var percentageScroll = parseInt(window.pageYOffset)/window.innerHeight*2;
-				if (percentageScroll >= 1.5) {
-					const leftScrollElement0 = document.getElementById('leftscroll1');
-					leftScrollElement0.setAttribute("class", "leftscroll leftscroll0");
-				} else {
-					const leftScrollElement0 = document.getElementById('leftscroll1');
-					leftScrollElement0.setAttribute("class", "leftscroll0");
-				}
-				
-				if (percentageScroll >= 1.7) {
-					const rightScrollElement0 = document.getElementById('rightscroll1');
-					rightScrollElement0.setAttribute("class", "rightscroll rightscroll0");
-				} else {
-					const rightScrollElement0 = document.getElementById('rightscroll1');
-					rightScrollElement0.setAttribute("class", "rightscroll0");
-				}
-			}
-			setInterval(on150Scroll, 100);
-			
 			function loaded() {
 				function changeText() {
-					texts = ["Full stack", "AI", "Python", "Web"]
+					texts = ["Full stack", "en IA", "Python", "Web"]
 					const workname = document.getElementById('workname');
 					curIndex = parseInt(workname.getAttribute('data-index'));
 					curIndex += 1;
@@ -484,6 +740,62 @@
 				}
 				setInterval(changeText, 2000);
 			}
+			const skills = [
+				{ name: 'Anglais', level: 100, color: '#FF6347' },
+				{ name: 'Python', level: 100, color: '#1E90FF' },
+				{ name: 'HTML', level: 85, color: '#FFD700' },
+				{ name: 'JavaScript', level: 75, color: '#32CD32' }
+			];
+	
+			const container = document.getElementById('skillsContainer');
+	
+			skills.forEach(skill => {
+				const skillDiv = document.createElement('div');
+				skillDiv.className = 'skill';
+				
+				const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+				svg.setAttribute('viewBox', '0 0 36 36');
+				
+				const backgroundCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+				backgroundCircle.setAttribute('cx', '18');
+				backgroundCircle.setAttribute('cy', '18');
+				backgroundCircle.setAttribute('r', '15.9155');
+				backgroundCircle.setAttribute('fill', 'none');
+				backgroundCircle.setAttribute('stroke', '#3a3a3a');
+				backgroundCircle.setAttribute('stroke-width', '3');
+	
+				const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+				path.setAttribute('d', 'M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831');
+				path.setAttribute('fill', 'none');
+				path.setAttribute('stroke', skill.color);
+				path.setAttribute('stroke-width', '3');
+				path.setAttribute('stroke-linecap', 'round');
+				path.setAttribute('stroke-dasharray', '100, 100');
+				
+				const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+				text.setAttribute('x', '18');
+				text.setAttribute('y', '20.35');
+				text.setAttribute('text-anchor', 'middle');
+				text.setAttribute('fill', '#ffffff');
+				text.setAttribute('font-size', '10');
+				text.textContent = `${skill.level}%`;
+				
+				svg.appendChild(backgroundCircle);
+				svg.appendChild(path);
+				svg.appendChild(text);
+				
+				const skillName = document.createElement('div');
+				skillName.className = 'skill-name';
+				skillName.textContent = skill.name;
+				
+				skillDiv.appendChild(svg);
+				skillDiv.appendChild(skillName);
+				container.appendChild(skillDiv);
+				
+				setTimeout(() => {
+					path.style.strokeDasharray = `${skill.level}, 100`;
+				}, 100);
+			});
 		</script>
 	</body>
 </html>

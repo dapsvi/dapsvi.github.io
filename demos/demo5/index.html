@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fluid</title>
+		<style>
+/* Set the link to image you want for the background here */
+:root {--bg-image: url(
+	'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F001%2F760%2F936%2Flarge_2x%2Fdark-blue-pattern-with-curves-vector.jpg&f=1&nofb=1&ipt=14661992d1aeed04c295335236443cb829584063f66a097dbd1cdfece651182b&ipo=images'
+);}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+#controls {
+  color: white;
+  position: absolute;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+canvas {
+  width: 100cqw;
+  height: 100cqh;
+  background: var(--bg-image);
+  background-size: 100cqw;
+  filter: url('#swirl');
+  animation: bannermove 60s linear infinite;
+  background-repeat: repeat;
+}
+@keyframes bannermove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100cqw 100cqw;
+  }
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+		<canvas></canvas>
+		</div>
+		<svg >
+			<filter id="swirl">
+				<feTurbulence
+				baseFrequency="0.01"
+				numOctaves='1'
+				result="wrap"
+				type="fractalNoise">
+				</feTurbulence>
+				
+				<feDisplacementMap
+				id="liquid"
+				class="liquid"
+				in="SourceGraphic"
+				in2="wrap"
+				scale="300"
+				xChannelSelector="R"
+				yChannelSelector="B">
+				</feDisplacementMap>
+			</filter>
+		</svg>
+	</body>
+</html>
