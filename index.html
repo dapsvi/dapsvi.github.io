@@ -158,10 +158,12 @@
 			
 			#navbar-dapsvi {
 				margin: 0;
+				width: 50%;
 				color: black;
 				font-size: 20px;
 				margin-left: 10px;
 				font-weight: bold;
+				text-align: center;
 			}
 			
 			#hsplit {
@@ -524,6 +526,79 @@
 				display: none;
 			}
 			
+			.projects {
+				width: 100%;
+				margin: 100px 0;
+			}
+			
+			.projects-container {
+				width: 90%;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 10px;
+				justify-content: center;
+				min-height: 500px;
+			}
+			
+			.project {
+				width: 30%;
+				max-width: 300px;
+				height: 90%;
+				border-radius: 20px;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.project-title-container {
+				width: 100%;
+				height: 100px;
+				border-radius: 20px;
+				background-color: rgba(0, 0, 0, 0.2);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.project-title-container p {
+				margin: 0;
+				color: white;
+				font-size: 20px;
+				font-weight: bold;
+				text-align: center;
+			}
+			
+			.project-description-wrapper {
+				margin: 10px;
+				flex: 1;
+				position: relative;
+			}
+			
+			.project-description-wrapper p {
+				text-align: justify;
+			}
+			
+			.project-description-wrapper img {
+				width: 100%;
+				height: 150px;
+				object-fit: cover;
+				border-radius: 20px;
+				position: absolute;
+				bottom: 0;
+			}
+			
+			#project-1 {
+				background-color: rgb(255, 84, 71);
+			}
+			
+			#project-2 {
+				background-color: rgb(255, 92, 214);
+			}
+			
+			#project-3 {
+				background-color: rgb(79, 188, 255);
+			}
+			
 			@media (max-width: 810px) {
 				.pricing-container {
 					flex-direction: column;
@@ -536,11 +611,35 @@
 					min-height: initial;
 				}
 				
+				.projects-container {
+					flex-direction: column;
+					flex-wrap: nowrap;
+				}
+				
+				.project {
+					max-width: 100%;
+					width: 100%;
+					height: 500px;
+				}
+				
+				.project-description-wrapper img {
+					width: 100%;
+					height: 50%;
+					object-fit: cover;
+					border-radius: 20px;
+					position: absolute;
+					bottom: 0;
+				}
+				
 				.btn-space {
 					display: initial;
 					position: static;
 					height: 100px;
 					width: 100%;
+				}
+				
+				.process-container {
+					width: 90%;
 				}
 			}
 			
@@ -674,12 +773,12 @@
 					<div class="pricing-plan" id="pricing-1">
 						<div class="price">
 							<h3>Plan de base</h3>
-							<p class="price-value">60€</p>
+							<p class="price-value">100€</p>
 						</div>
 						<div class="price-content">
 							<p>Idéal pour les petites entreprises ou startups.</p>
 							<p>Site vitrine 3 pages (site statique)</p>
-							<p>Aide pour héberger le site gratuitement et acheter un nom de domaine</p>
+							<p>Assistance pour héberger le site gratuitement et acheter un nom de domaine</p>
 							<p>Indexation sur Google et Bing</p>
 							<p>SEO de base</p>
 							<div class="btn-space"></div>
@@ -691,12 +790,12 @@
 					<div class="pricing-plan" id="pricing-2">
 						<div class="price">
 							<h3>Site full stack de base</h3>
-							<p class="price-value">100€</p>
+							<p class="price-value">150€</p>
 						</div>
 						<div class="price-content">
 							<p>Idéal pour les sites nécessitant de mettre à jour une partie du site régulièrement</p>
 							<p>Site vitrine avec panel admin</p>
-							<p>Aide pour acheter un hébergeur et un nom de domaine</p>
+							<p>Assistance pour acheter un hébergeur et un nom de domaine</p>
 							<p>Indexation sur Google et Bing</p>
 							<p>SEO de base</p>
 							<div class="btn-space"></div>
@@ -713,13 +812,52 @@
 						<div class="price-content">
 							<p>Idéal pour les sites nécessitant un système de connexion, création de comptes, hiérarchie d'utilisateurs, APIs, et autres</p>
 							<p>Site entièrement personnalisé</p>
-							<p>Aide pour acheter un hébergeur et un nom de domaine</p>
+							<p>Assistance pour acheter un hébergeur et un nom de domaine</p>
 							<p>Indexation sur Google et Bing</p>
 							<p>SEO avancé</p>
 							<div class="btn-space"></div>
 						</div>
 						<div class="pricebtn">
 							<a href="./contact" class="pricebtn-btn" id="pricebtn-3">DEMANDER UN DEVIS</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="projects">
+				<h2 class="section-title">Mes projets</h2>
+				<div class="hcenter">
+					<div class="projects-container">
+						<div class="project" id="project-1">
+							<div class="project-title-container">
+								<p class="project-title">Pizzeria da Giovà</p>
+							</div>
+							<div class="project-description-wrapper">
+								<p>La meilleure pizzeria du monde !</p>
+								<p>J'ai designé, créé, et ai aidé à mettre leur site en ligne. Vous pouvez le visiter ici : <a target="_blank" href="https://www.pizzeriadagiova.be/">pizzeriadagiova.be</a></p>
+								<img src="https://www.pizzeriadagiova.be/logo.jpg">
+							</div>
+						</div>
+						
+						<div class="project" id="project-2">
+							<div class="project-title-container">
+								<p class="project-title">WebGen.AI</p>
+							</div>
+							<div class="project-description-wrapper">
+								<p>Un site web qui aide à créer son propre site web grâce à l'IA - ou juste pour s'amuser !</p>
+								<p>Ce projet est toujours en développement mais va sûrement bientôt sortir.</p>
+								<img src="./webgenai.png">
+							</div>
+						</div>
+						
+						<div class="project" id="project-3">
+							<div class="project-title-container">
+								<p class="project-title">Infinite Storage</p>
+							</div>
+							<div class="project-description-wrapper">
+								<p>Un site web qui permet de stocker des fichiers en quantité illimitée en les envoyant dans discord !</p>
+								<p>Ce projet est en déploiement et va bientôt arriver sur ce site même.</p>
+								<img src="./discord.png">
+							</div>
 						</div>
 					</div>
 				</div>
