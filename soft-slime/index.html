@@ -1,0 +1,339 @@
+<html><head><base href="https://websim.ai/2d-soft-body-sim/" />
+<title>Soft Slime Simulation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  canvas {
+    border: 1px solid #333;
+    background-color: #fff;
+    touch-action: none;
+    max-width: 100%;
+    height: auto;
+  }
+  #controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+</style>
+</head>
+<body>
+  <h1>Soft Slime</h1>
+  <canvas id="simCanvas" width="600" height="400"></canvas>
+  <div id="controls">
+    <button id="resetBtn">Reset</button>
+  </div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+const resetBtn = document.getElementById('resetBtn');
+
+let particles = [];
+let springs = [];
+let cells = [];
+let grabbedParticle = null;
+const stiffness = 0.5;
+const widthPoints = 20;
+const heightPoints = 20;
+const gravity = true;
+
+class Particle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.oldX = x;
+    this.oldY = y;
+    this.mass = 1;
+    this.isGrabbed = false;
+  }
+
+  update() {
+    if (!this.isGrabbed) {
+      const vx = (this.x - this.oldX) * 0.99;
+      const vy = (this.y - this.oldY) * 0.99;
+
+      this.oldX = this.x;
+      this.oldY = this.y;
+
+      this.x += vx;
+      this.y += vy;
+
+      if (gravity) {
+        this.y += 0.2;
+      }
+    }
+  }
+
+  constrain() {
+    if (!this.isGrabbed) {
+      const vx = this.x - this.oldX;
+      const vy = this.y - this.oldY;
+
+      if (this.x > canvas.width) {
+        this.x = canvas.width;
+        this.oldX = this.x + vx * 0.9;
+      } else if (this.x < 0) {
+        this.x = 0;
+        this.oldX = this.x + vx * 0.9;
+      }
+
+      if (this.y > canvas.height) {
+        this.y = canvas.height;
+        this.oldY = this.y + vy * 0.9;
+      } else if (this.y < 0) {
+        this.y = 0;
+        this.oldY = this.y + vy * 0.9;
+      }
+    }
+  }
+}
+
+class Spring {
+  constructor(p1, p2, length) {
+    this.p1 = p1;
+    this.p2 = p2;
+    this.length = length;
+  }
+
+  update() {
+    const dx = this.p2.x - this.p1.x;
+    const dy = this.p2.y - this.p1.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const forceMagnitude = (distance - this.length) * stiffness;
+    const force = {
+      x: (dx / distance) * forceMagnitude,
+      y: (dy / distance) * forceMagnitude
+    };
+
+    if (!this.p1.isGrabbed) {
+      this.p1.x += force.x / this.p1.mass;
+      this.p1.y += force.y / this.p1.mass;
+    }
+    if (!this.p2.isGrabbed) {
+      this.p2.x -= force.x / this.p2.mass;
+      this.p2.y -= force.y / this.p2.mass;
+    }
+  }
+}
+
+class Cell {
+  constructor(p1, p2, p3, p4) {
+    this.p1 = p1;
+    this.p2 = p2;
+    this.p3 = p3;
+    this.p4 = p4;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.moveTo(this.p1.x, this.p1.y);
+    ctx.lineTo(this.p2.x, this.p2.y);
+    ctx.lineTo(this.p3.x, this.p3.y);
+    ctx.lineTo(this.p4.x, this.p4.y);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(0, 255, 0, 0.5)';
+    ctx.fill();
+  }
+}
+
+function createSoftBody(centerX, centerY, width, height, particlesX, particlesY) {
+  const stepX = width / (particlesX - 1);
+  const stepY = height / (particlesY - 1);
+
+  for (let y = 0; y < particlesY; y++) {
+    for (let x = 0; x < particlesX; x++) {
+      particles.push(new Particle(centerX - width/2 + x * stepX, centerY - height/2 + y * stepY));
+    }
+  }
+
+  for (let y = 0; y < particlesY; y++) {
+    for (let x = 0; x < particlesX; x++) {
+      const i = y * particlesX + x;
+      
+      if (x < particlesX - 1) {
+        springs.push(new Spring(particles[i], particles[i + 1], stepX));
+      }
+      
+      if (y < particlesY - 1) {
+        springs.push(new Spring(particles[i], particles[i + particlesX], stepY));
+      }
+      
+      if (x < particlesX - 1 && y < particlesY - 1) {
+        springs.push(new Spring(particles[i], particles[i + particlesX + 1], Math.sqrt(stepX * stepX + stepY * stepY)));
+        springs.push(new Spring(particles[i + 1], particles[i + particlesX], Math.sqrt(stepX * stepX + stepY * stepY)));
+      }
+      
+      if (x < particlesX - 2) {
+        springs.push(new Spring(particles[i], particles[i + 2], stepX * 2));
+      }
+      if (y < particlesY - 2) {
+        springs.push(new Spring(particles[i], particles[i + particlesX * 2], stepY * 2));
+      }
+
+      if (x < particlesX - 1 && y < particlesY - 1) {
+        cells.push(new Cell(
+          particles[i],
+          particles[i + 1],
+          particles[i + particlesX + 1],
+          particles[i + particlesX]
+        ));
+      }
+    }
+  }
+}
+
+function init() {
+  particles = [];
+  springs = [];
+  cells = [];
+  const bodyWidth = Math.min(canvas.width, canvas.height) * 0.8;
+  const bodyHeight = bodyWidth;
+  createSoftBody(canvas.width / 2, canvas.height / 2, bodyWidth, bodyHeight, widthPoints, heightPoints);
+}
+
+function update() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < 4; i++) {
+    for (const spring of springs) {
+      spring.update();
+    }
+  }
+
+  for (const particle of particles) {
+    particle.update();
+    particle.constrain();
+  }
+
+  for (const cell of cells) {
+    cell.draw();
+  }
+
+  requestAnimationFrame(update);
+}
+
+function getCanvasCoordinates(evt) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const x = (evt.clientX - rect.left) * scaleX;
+  const y = (evt.clientY - rect.top) * scaleY;
+  return { x, y };
+}
+
+function findNearestParticle(x, y) {
+  let nearestParticle = null;
+  let minDistance = Infinity;
+
+  for (const particle of particles) {
+    const dx = particle.x - x;
+    const dy = particle.y - y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      nearestParticle = particle;
+    }
+  }
+
+  return minDistance < 20 ? nearestParticle : null;
+}
+
+function handleStart(evt) {
+  evt.preventDefault();
+  const touch = evt.touches[0];
+  const pos = getCanvasCoordinates(touch);
+  grabbedParticle = findNearestParticle(pos.x, pos.y);
+  if (grabbedParticle) {
+    grabbedParticle.isGrabbed = true;
+  }
+}
+
+function handleMove(evt) {
+  evt.preventDefault();
+  if (grabbedParticle) {
+    const touch = evt.touches[0];
+    const pos = getCanvasCoordinates(touch);
+    grabbedParticle.x = pos.x;
+    grabbedParticle.y = pos.y;
+    grabbedParticle.oldX = pos.x;
+    grabbedParticle.oldY = pos.y;
+  }
+}
+
+function handleEnd(evt) {
+  evt.preventDefault();
+  if (grabbedParticle) {
+    grabbedParticle.isGrabbed = false;
+    grabbedParticle = null;
+  }
+}
+
+canvas.addEventListener('mousedown', (e) => {
+  const pos = getCanvasCoordinates(e);
+  grabbedParticle = findNearestParticle(pos.x, pos.y);
+  if (grabbedParticle) {
+    grabbedParticle.isGrabbed = true;
+  }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  if (grabbedParticle) {
+    const pos = getCanvasCoordinates(e);
+    grabbedParticle.x = pos.x;
+    grabbedParticle.y = pos.y;
+    grabbedParticle.oldX = pos.x;
+    grabbedParticle.oldY = pos.y;
+  }
+});
+
+canvas.addEventListener('mouseup', () => {
+  if (grabbedParticle) {
+    grabbedParticle.isGrabbed = false;
+    grabbedParticle = null;
+  }
+});
+
+canvas.addEventListener('touchstart', handleStart, false);
+canvas.addEventListener('touchmove', handleMove, false);
+canvas.addEventListener('touchend', handleEnd, false);
+
+resetBtn.addEventListener('click', init);
+
+function resizeCanvas() {
+  const containerWidth = Math.min(600, window.innerWidth - 20);
+  const containerHeight = (containerWidth / 3) * 2;
+  canvas.style.width = `${containerWidth}px`;
+  canvas.style.height = `${containerHeight}px`;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+init();
+update();
+</script>
+
+</body></html>
