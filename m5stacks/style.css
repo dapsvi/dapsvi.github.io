@@ -1,104 +1,111 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* style.css */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #f5f5f5;
+  --text-color: #333;
+  --header-bg: #ffffff;
+  --nav-hover-bg: #3498db;
+  --nav-hover-color: #fff;
+  --card-bg: #fff;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
 
-/* Global Styles */
+/* Reset some basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
   line-height: 1.6;
+  padding: 20px;
 }
 
-/* Header & Navigation */
+/* Header and Navigation */
 header {
-  background: #1c3d5a;
-  padding: 20px 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--header-bg);
+  box-shadow: var(--box-shadow);
+  padding: 10px 20px;
+  margin-bottom: 20px;
 }
 
-nav ul {
+header nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-nav ul li {
-  display: inline-block;
-  margin: 0 15px;
-}
-
-nav ul li a {
-  color: #ffffff;
+header nav ul li a {
   text-decoration: none;
-  font-size: 1.1em;
-  font-weight: 700;
-  transition: color 0.3s ease, transform 0.3s ease;
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-nav ul li a:hover {
-  color: #ffcc00;
-  transform: translateY(-2px);
+header nav ul li a:hover {
+  background-color: var(--nav-hover-bg);
+  color: var(--nav-hover-color);
+  border-radius: var(--border-radius);
 }
 
-/* Main Content */
+/* Container to wrap main content for reusability */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Main Content and Sections */
 main {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 30px 40px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-section {
-  margin-bottom: 40px;
+main section {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
+/* Typography */
 h1, h2 {
-  color: #1c3d5a;
-  margin-bottom: 16px;
-  position: relative;
-  padding-bottom: 8px;
-}
-
-h1::after, h2::after {
-  content: "";
-  position: absolute;
-  width: 50px;
-  height: 3px;
-  background: #ffcc00;
-  left: 0;
-  bottom: 0;
-  border-radius: 2px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
 }
 
 p {
-  margin-bottom: 16px;
-  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 ul {
   list-style: disc inside;
-  margin: 0;
-  padding-left: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
 }
 
-ul li {
-  margin-bottom: 8px;
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  color: #777;
+  border-top: 1px solid #ccc;
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
-  nav ul li {
-    display: block;
-    margin: 10px 0;
-  }
-  
-  main {
-    margin: 20px;
-    padding: 20px;
+@media (max-width: 768px) {
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
   }
 }
